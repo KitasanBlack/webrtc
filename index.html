@@ -66,40 +66,7 @@ return;
       });
     }
     
-    width.value = 640;
-  height.value = 480;
-  frameRate.value = 30;
-   
-  let supported = navigator.mediaDevices.getSupportedConstraints();
-  console.log(supported);
-  const localStream = await navigator.mediaDevices
-    .getUserMedia({
-      audio: true,
-      video: {
-        width: {ideal: width.value},
-        height: {ideal: height.value},
-        frameRate: {ideal: frameRate.value},
-      }
-    })
-    .catch(console.error);
-  
-  function applyConstraints() {
-  let videoTrack = localStream.getVideoTracks()[0];
-  let currentConstrains = videoTrack.getConstraints();
-  console.log('変更前の値:', currentConstrains);
-  videoTrack.applyConstraints({
-    width: {ideal: width.value},
-    height: {ideal: height.value},
-    frameRate: {ideal: frameRate.value}
-  })
-  .then(() => {
-    currentConstrains = videoTrack.getConstraints();
-    console.log('変更後の値:', currentConstrains);
-  })
-  .catch(e => {
-    console.log('制約を設定できませんでした:', e);
-  });
-}
+
     
     peer.on('call', mediaConnection => {
       mediaConnection.answer(localStream);
