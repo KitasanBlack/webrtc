@@ -30,9 +30,7 @@ const frameRate = document.getElementById('js-stream-framerate');
   frameRate.value = 30;    
 
 // カメラ映像取得
-navigator.mediaDevices.getUserMedia({video: {width: {ideal: width.value},
-    height: {ideal: height.value},
-    frameRate: {ideal: frameRate.value},}, audio: true})
+navigator.mediaDevices.getUserMedia({video: true, audio: true})
 .then( stream => {
 // 成功時にvideo要素にカメラ映像をセットし、再生
 const videoElm = document.getElementById('my-video')
@@ -46,6 +44,36 @@ console.error('mediaDevice.getUserMedia() error:', error);
 return;
 });
 
+    applyConstraintsTrigger.addEventListener('click', applyConstraints);
+function onClickSend() {
+      // Send message to all of the peers in the room via websocket
+      room.send(localText.value);
+
+      messages.textContent += `${peer.id}: ${localText.value}\n`;
+      localText.value = '';
+    }
+    
+    function applyConstraints() {
+      let videoTrack = localStream.getVideoTracks()[0];
+      let currentConstrains = videoTrack.getConstraints();
+      console.log('変更前の値:', currentConstrains);
+      videoTrack.applyConstraints({
+        width: {ideal: width.value},
+        height: {ideal: height.value},
+        frameRate: {ideal: frameRate.value}
+      })
+      .then(() => {
+        currentConstrains = videoTrack.getConstraints();
+        console.log('変更後の値:', currentConstrains);
+      })
+      .catch(e => {
+        console.log('制約を設定できませんでした:', e);
+      });
+    }
+    
+  });  
+  
+  
     const peer = new Peer({
       key: '2a2cd4bc-7523-4941-887c-083c31b5550e',
       debug: 3
