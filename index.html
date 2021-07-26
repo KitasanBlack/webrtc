@@ -25,6 +25,10 @@ const width = document.getElementById('js-stream-width');
 const height = document.getElementById('js-stream-height');
 const frameRate = document.getElementById('js-stream-framerate');
 
+  width.value = 640;
+  height.value = 480;
+  frameRate.value = 30;    
+
 // カメラ映像取得
 navigator.mediaDevices.getUserMedia({video: {width: {ideal: width.value},
     height: {ideal: height.value},
