@@ -30,7 +30,14 @@ const frameRate = document.getElementById('js-stream-framerate');
   frameRate.value = 30;    
 
 // カメラ映像取得
-navigator.mediaDevices.getUserMedia({video: true, audio: true})
+navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: {
+        width: {ideal: width.value},
+        height: {ideal: height.value},
+        frameRate: {ideal: frameRate.value},
+      }
+    })
 .then( stream => {
 // 成功時にvideo要素にカメラ映像をセットし、再生
 const videoElm = document.getElementById('my-video')
