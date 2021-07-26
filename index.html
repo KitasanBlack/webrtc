@@ -44,14 +44,7 @@ console.error('mediaDevice.getUserMedia() error:', error);
 return;
 });
 
-    applyConstraintsTrigger.addEventListener('click', applyConstraints);
-function onClickSend() {
-      // Send message to all of the peers in the room via websocket
-      room.send(localText.value);
-
-      messages.textContent += `${peer.id}: ${localText.value}\n`;
-      localText.value = '';
-    }
+ applyConstraintsTrigger.addEventListener('click', applyConstraints);
     
     function applyConstraints() {
       let videoTrack = localStream.getVideoTracks()[0];
