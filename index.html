@@ -49,29 +49,7 @@ localStream = stream;
 // 失敗時にはエラーログを出力
 console.error('mediaDevice.getUserMedia() error:', error);
 return;
-});
-
- applyConstraintsTrigger.addEventListener('click', applyConstraints);
-    
-    function applyConstraints() {
-      let videoTrack = localStream.getVideoTracks()[0];
-      let currentConstrains = videoTrack.getConstraints();
-      console.log('変更前の値:', currentConstrains);
-      videoTrack.applyConstraints({
-        width: {ideal: width.value},
-        height: {ideal: height.value},
-        frameRate: {ideal: frameRate.value}
-      })
-      .then(() => {
-        currentConstrains = videoTrack.getConstraints();
-        console.log('変更後の値:', currentConstrains);
-      })
-      .catch(e => {
-        console.log('制約を設定できませんでした:', e);
-      });
-    }
-    
-  });  
+}); 
   
   
     const peer = new Peer({
