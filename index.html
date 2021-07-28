@@ -7,16 +7,23 @@
 <title>SkyWayチュートリアル</title>
 </head>
 <body>
-<video id="my-video" width="50%" autoplay muted playsinline></video><br>
+<center>
+<div>
+<video id="my-video" width="70%" autoplay muted playsinline></video><br>
 <div>
 <input type="text" id="js-stream-width" placeholder="width">
 <input type="text" id="js-stream-height" placeholder="height">
 <input type="text" id="js-stream-framerate" placeholder="framerate">
 <button id="js-applyconstraints-trigger">applyconstraints</button>
 </div>
+</div>
+<div>
 <p id="my-id"></p>
+</div>
+<div>
 <input id="their-id"></input>
 <button id="make-call">発信</button>
+</div>
 <video id="their-video" width="400px" autoplay muted playsinline></video>
 <script>
 let localStream;
@@ -86,5 +93,6 @@ return;
       setEventListener(mediaConnection);
     });
 </script>
+</center>
 </body>
 </html>
